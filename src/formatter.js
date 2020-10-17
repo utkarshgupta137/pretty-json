@@ -25,6 +25,9 @@ const formatter = {
       return stringify(obj, {
         space,
         replacer (key, value) {
+          if (Array.isArray(value)) {
+            value.sort()
+          }
           try {
             if (value.constructor.name === 'BigNumber') {
               return JSONbig.stringify(value)
